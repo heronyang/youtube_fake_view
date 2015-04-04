@@ -9,4 +9,6 @@ sudo make install
 
 ## Run
 
+```
 ./fake_click.py
+```
