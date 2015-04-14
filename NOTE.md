@@ -2,6 +2,8 @@
 
 **Team: Buckstar**
 
+*This is course project for Network Security at Carnegie Mellon University. All code and documents are for academic purpose.*
+
 ## Preface: How Youtube View Counts
 
 Refer: [Quora-How does YouTube calculate its views?](http://www.quora.com/How-does-YouTube-calculate-its-views)
@@ -63,11 +65,27 @@ opens a Youtube page without executing its javascript.
 
 #### phantomjs/fake_click.js:
 
-opens a Youtube page then executes its javascript. **However, by looking to its screenshot, we can learn that phamtonjs is not supporting Adobe Flash Player.** Refer to: [phantomjs doesn't support flash player](https://github.com/ariya/phantomjs/issues/12206)
+opens a Youtube page then executes its javascript. **However, by looking to its screenshot, we can learn that phamtonjs is not supporting Adobe Flash Player.** Refer to: [phantomjs doesn't support flash player](https://github.com/ariya/phantomjs/issues/12206).
 
 ### 2. Selenium HQ
 
-*fake_click_selenium.py*
+Under *phantomjs/* folder, execute
+
+```
+./run.sh
+```
+
+#### seleniumhq/fake_click_dummy.py:
+
+opens Youtube page using Firefox driver. (**X11 is required**)
+
+### seleniumhq/fake_click.py (only tested on Ubuntu so far)
+
+opens Youtube page using Firefox driver with Xvfb. (**X11 is NOT required**)
+
+## Future Work
+
+Pick one platform or botnet as deploye platform, and write custom script for it.
 
 ## Code
 
