@@ -1,1 +1,4 @@
 tags
+*.log
+*.logs
+ghostdriver.log
