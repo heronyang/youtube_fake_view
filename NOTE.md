@@ -1,8 +1,9 @@
 # Youtube Fake View Script
 
+**Network Security - Carnegie Mellon University**
 **Team: Buckstar**
 
-*This is course project for Network Security at Carnegie Mellon University. All code and documents are for academic purpose.*
+*All code and documents are for academic purpose only.*
 
 ## Preface: How Youtube View Counts
 
@@ -47,7 +48,7 @@ Here is how it looks like after the video is loaded. (The &lt;embed&gt; element 
 
 ## Script
 
-In ordering to generate Youtube views, I've tried several approaches including using [PhantomJS](http://phantomjs.org/) and [SeleniumHQ](http://docs.seleniumhq.org/).
+In ordering to generate Youtube views, I've tried several approaches including using [PhantomJS](http://phantomjs.org/) and [SeleniumHQ](http://docs.seleniumhq.org/). And, PhamtonJS won't work for increasing Youtube views since it's not supporting Flash Player; however, SeleniumHQ works nicely and is tested on Ubuntu Server.
 
 ### 1. PhamtonJS
 
@@ -57,7 +58,7 @@ Under *phantomjs/* folder, execute
 ./run.sh
 ```
 
-to run. And there're the details about the files:
+to run. And here are the details about the files:
 
 #### phantomjs/fake_click_no_js.js:
 
@@ -69,19 +70,20 @@ opens a Youtube page then executes its javascript. **However, by looking to its 
 
 ### 2. Selenium HQ
 
-Under *phantomjs/* folder, execute
+Under *seleniumhq/* folder, execute:
 
 ```
-./run.sh
+python fake_click_dummy.py
 ```
-
-#### seleniumhq/fake_click_dummy.py:
 
 opens Youtube page using Firefox driver. (**X11 is required**)
 
-### seleniumhq/fake_click.py (only tested on Ubuntu so far)
+To start browser headlessly, we should apply [Xvfb(virtual framebuffer X server for X Version 11)](http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml) as background process.
 
-opens Youtube page using Firefox driver with Xvfb. (**X11 is NOT required**)
+Under *seleniumhq/* folder, execute:
+```
+make run
+```
 
 ## Future Work
 
