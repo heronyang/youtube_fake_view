@@ -7,11 +7,11 @@ export DISPLAY=:10
 exec > >(tee log)
 exec 2>&1
 
-max=1440
+max=2000
 for i in `seq 1 $max`
 do
     echo "no.$i"
     date
-    python fake_click.py
-    sleep 20
+    python fake_click.py &
+    sleep 15
 done
