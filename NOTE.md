@@ -73,7 +73,7 @@ opens a Youtube page then executes its javascript. **However, by looking to its 
 Under *seleniumhq/* folder, execute:
 
 ```
-python fake_click_dummy.py
+./run.sh
 ```
 
 opens Youtube page using Firefox driver. (**X11 is required**)
@@ -82,12 +82,14 @@ To start browser headlessly, we should apply [Xvfb(virtual framebuffer X server 
 
 Under *seleniumhq/* folder, execute:
 ```
-make run
+make run_headless_server
 ```
 
 ## Future Work
 
-Pick one platform or botnet as deploye platform, and write custom script for it.
+- Pick one platform or botnet as deploye platform, and write custom script for it (better would be shell code).
+- Test different frequencies/patterns and their response on Youtube views.
+- Record traffic packets and see if they can be reproduced.
 
 ## Code
 
