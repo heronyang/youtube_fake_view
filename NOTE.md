@@ -52,13 +52,13 @@ In ordering to generate Youtube views, I've tried several approaches including u
 
 ### 1. PhamtonJS
 
-Under *phantomjs/* folder, execute
+Run:
 
 ```
-./run.sh
+make run_phamtonjs
 ```
 
-to run. And here are the details about the files:
+And here are the details about the files:
 
 #### phantomjs/fake_click_no_js.js:
 
@@ -70,19 +70,74 @@ opens a Youtube page then executes its javascript. **However, by looking to its 
 
 ### 2. Selenium HQ
 
-Under *seleniumhq/* folder, execute:
+Run:
 
 ```
-./run.sh
+cd seleniumhq && ./run.sh
 ```
 
 opens Youtube page using Firefox driver. (**X11 is required**)
 
-To start browser headlessly, we should apply [Xvfb(virtual framebuffer X server for X Version 11)](http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml) as background process.
+To start browser headlessly, we should apply [Xvfb(virtual framebuffer X server for X Version 11)](http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml) as background process. Run:
 
-Under *seleniumhq/* folder, execute:
 ```
-make run_headless_server
+cd seleniumhq && make run_headless_server
+```
+
+Or, just run following command at root directory:
+
+```
+make run_selenium
+```
+
+### 3. Faking User Agent using Selenium HQ
+
+Give different parameters for fake_click.py to specify User Agent or Target, try:
+
+```
+> ./seleniumhq/fake_click.py --help
+usage: Visit one website using Selenium [-h] [-u [USER_AGENT]] [-t [TARGET]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -u [USER_AGENT], --user-agent [USER_AGENT]
+                        specify a user agent for HTTP header
+  -t [TARGET], --target [TARGET]
+                        target URL
+```
+
+for example:
+
+```
+> ./seleniumhq/fake_click.py -u "my custom user agent code" -t "https://www.youtube.com/watch?v=6_XjCeT6V1k"
+```
+
+**Test**
+
+You can test the code by referring to our own local server by running:
+
+```
+cd seleniumhq && ./test_listener.py
+```
+
+then:
+
+```
+cd seleniumhq && ./fake_click.py
+```
+
+you should get following in your server console:
+
+```
+Connected by ('127.0.0.1', 51108)
+GET / HTTP/1.1
+Host: localhost:50007
+User-Agent: some UA string
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
 ```
 
 ## Future Work
