@@ -2,6 +2,7 @@
 import time
 import argparse
 from selenium import webdriver
+from random import randint
 
 # using Blackberry user agent as default for fun, check more:
 # http://www.useragentstring.com/pages/BlackBerry/
@@ -15,23 +16,54 @@ parser.add_argument('-t', '--target',
         help='target URL',
         nargs='?',
         default="localhost:50007")
+parser.add_argument('-f', '--file',
+        help='user agent list',
+        nargs='?',
+        default="")
 args = vars(parser.parse_args())
 
 print 'Arguments:'
 print args
 
-# visible
-profile = webdriver.FirefoxProfile()
-profile.set_preference("general.useragent.override", args['user_agent'])
+filename = args['file']
 
-driver = webdriver.Firefox(profile)
-driver.get(args['target'])
+# batch case
+if filename != '':
+    useragent_list = open(filename).read().splitlines()
+
+    for ua in useragent_list:
+
+        print '>> start user agent:' + ua
+
+        profile = webdriver.FirefoxProfile()
+        profile.set_preference("general.useragent.override", ua)
+
+        driver = webdriver.Firefox(profile)
+        driver.get(args['target'])
+
+        # sleep
+        time.sleep(50 + randint(0,10))
+
+        # finish
+        driver.get_screenshot_as_file('screenshot.png')
+        driver.quit()
+
+        print '>> done user agent:' + ua
+
+
+else:
+# visible
+    profile = webdriver.FirefoxProfile()
+    profile.set_preference("general.useragent.override", args['user_agent'])
+
+    driver = webdriver.Firefox(profile)
+    driver.get(args['target'])
 
 # sleep
-time.sleep(30)
+    time.sleep(30)
 
 # finish
-driver.get_screenshot_as_file('screenshot.png')
+    driver.get_screenshot_as_file('screenshot.png')
 
-driver.quit()
-print 'done.'
+    driver.quit()
+    print 'done.'

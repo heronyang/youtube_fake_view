@@ -7,11 +7,5 @@ export DISPLAY=:10
 exec > >(tee log)
 exec 2>&1
 
-max=2000
-for i in `seq 1 $max`
-do
-    echo "no.$i"
-    date
-    python fake_click.py &
-    sleep 15
-done
+date
+python fake_click.py -f user_agents.txt -t "https://www.youtube.com/watch?v=K4r_J6JCDRc"
