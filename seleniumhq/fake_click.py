@@ -41,6 +41,7 @@ if filename != '':
         driver = webdriver.Firefox(profile)
         driver.get(args['target'])
         driver.set_window_size(1440, 900)
+        driver.maximize_window()
 
         # sleep
         time.sleep(50 + randint(0,10))
