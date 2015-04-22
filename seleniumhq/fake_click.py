@@ -46,10 +46,12 @@ if filename != '':
         driver.get(args['target'])
 
         # sleep
-        time.sleep(50 + randint(0,10))
+        time.sleep(20 + randint(0,10))
 
         # finish
-        driver.get_screenshot_as_file('screenshots/screenshot'+ua+'.png')
+        save_to_name = 'screenshots/screenshot'+''.join(e for e in ua if e.isalnum())+'.png'
+        driver.get_screenshot_as_file(save_to_name)
+        print 'save to name: ' + save_to_name
         driver.quit()
 
         print '>> done user agent:' + ua
