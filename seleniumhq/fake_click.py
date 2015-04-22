@@ -40,6 +40,7 @@ if filename != '':
 
         driver = webdriver.Firefox(profile)
         driver.get(args['target'])
+        driver.set_window_size(1440, 900)
 
         # sleep
         time.sleep(50 + randint(0,10))
@@ -58,6 +59,7 @@ else:
 
     driver = webdriver.Firefox(profile)
     driver.get(args['target'])
+    driver.set_window_size(1440, 900)
 
 # sleep
     time.sleep(30)
