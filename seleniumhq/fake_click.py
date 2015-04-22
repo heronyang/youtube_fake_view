@@ -39,9 +39,9 @@ if filename != '':
         profile.set_preference("general.useragent.override", ua)
 
         driver = webdriver.Firefox(profile)
-        driver.get(args['target'])
         driver.set_window_size(1440, 900)
         driver.maximize_window()
+        driver.get(args['target'])
 
         # sleep
         time.sleep(50 + randint(0,10))
@@ -59,8 +59,8 @@ else:
     profile.set_preference("general.useragent.override", args['user_agent'])
 
     driver = webdriver.Firefox(profile)
-    driver.get(args['target'])
     driver.set_window_size(1440, 900)
+    driver.get(args['target'])
 
 # sleep
     time.sleep(30)
