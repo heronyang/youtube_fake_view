@@ -4,6 +4,8 @@ import argparse
 from selenium import webdriver
 from random import randint
 
+import sys
+
 # using Blackberry user agent as default for fun, check more:
 # http://www.useragentstring.com/pages/BlackBerry/
 
@@ -47,10 +49,11 @@ if filename != '':
         time.sleep(50 + randint(0,10))
 
         # finish
-        driver.get_screenshot_as_file('screenshot.png')
+        driver.get_screenshot_as_file('screenshots/screenshot'+ua+'.png')
         driver.quit()
 
         print '>> done user agent:' + ua
+        sys.stdout.flush()
 
 
 else:
