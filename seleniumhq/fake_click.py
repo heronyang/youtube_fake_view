@@ -49,7 +49,7 @@ if filename != '':
         time.sleep(20 + randint(0,10))
 
         # finish
-        save_to_name = 'screenshots/screenshot'+''.join(e for e in ua if e.isalnum())+'.png'
+        save_to_name = 'screenshots_server/screenshot'+''.join(e for e in ua if e.isalnum())+'.png'
         driver.get_screenshot_as_file(save_to_name)
         print 'save to name: ' + save_to_name
         driver.quit()
