@@ -1,11 +1,12 @@
 # Youtube Fake View Script
 
 **Network Security - Carnegie Mellon University**
+
 **Team: Buckstar**
 
 *All code and documents are for academic purpose only.*
 
-## Preface: How Youtube View Counts
+## A. Preface: How Youtube View Counts
 
 Refer: [Quora-How does YouTube calculate its views?](http://www.quora.com/How-does-YouTube-calculate-its-views)
 
@@ -14,7 +15,7 @@ Refer: [Quora-How does YouTube calculate its views?](http://www.quora.com/How-do
 - If a video is viewed in its entirety by someone who clicked on it, it is counted as one view.
 - YouTube also considers views from the same IP in breaks of 6 to 8 hours. So one person viewing the same video repeatedly would only generate 3 to 5 views a day, after views cross 300.
 
-## Analysis Youtube Player Mechanism
+## B. Analysis Youtube Player Mechanism
 
 ### 1. HTML
 
@@ -46,11 +47,11 @@ Here is how it looks like after the video is loaded. (The &lt;embed&gt; element 
 <embed name="movie_player" id="movie_player" width="100%" height="100%" tabindex="0" type="application/x-shockwave-flash" src="https://s.ytimg.com/yts/swfbin/player-vflenMUmo/watch_as3.swf" allowscriptaccess="always" bgcolor="#000000" allowfullscreen="true" ...>
 ```
 
-## Script
+## C. Script
 
 In ordering to generate Youtube views, I've tried several approaches including using [PhantomJS](http://phantomjs.org/) and [SeleniumHQ](http://docs.seleniumhq.org/). And, PhamtonJS won't work for increasing Youtube views since it's not supporting Flash Player; however, SeleniumHQ works nicely and is tested on Ubuntu Server.
 
-### 1. PhamtonJS
+### 1. PhamtonJS (Failed)
 
 Run:
 
@@ -68,7 +69,7 @@ opens a Youtube page without executing its javascript.
 
 opens a Youtube page then executes its javascript. **However, by looking to its screenshot, we can learn that phamtonjs is not supporting Adobe Flash Player.** Refer to: [phantomjs doesn't support flash player](https://github.com/ariya/phantomjs/issues/12206).
 
-### 2. Selenium HQ
+### 2. Selenium HQ (Success)
 
 Run:
 
@@ -90,13 +91,14 @@ Or, just run following command at root directory:
 make run_selenium
 ```
 
-### 3. Faking User Agent using Selenium HQ
+## D. Faking User Agent
 
 Give different parameters for fake_click.py to specify User Agent or Target, try:
 
 ```
-> ./seleniumhq/fake_click.py --help
+> ./fake_click.py -h
 usage: Visit one website using Selenium [-h] [-u [USER_AGENT]] [-t [TARGET]]
+                                        [-f [FILE]]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -104,6 +106,8 @@ optional arguments:
                         specify a user agent for HTTP header
   -t [TARGET], --target [TARGET]
                         target URL
+  -f [FILE], --file [FILE]
+                        user agent list
 ```
 
 for example:
@@ -140,12 +144,36 @@ Connection: keep-alive
 
 ```
 
-## Future Work
+## E. Experiments
 
-- Pick one platform or botnet as deploye platform, and write custom script for it (better would be shell code).
-- Test different frequencies/patterns and their response on Youtube views.
+1. Test a list of user agents from one IP (about 526 user agents)
+
+- Command:
+
+    cd seleniumhq && python ./fake_user.py -f user_agents.txt -t "http://www.youtube.com/...
+
+- Result: We found that Youtube gives out different websites based on different user agents. Some of them get normal desktop versions, some get mobile versions.
+- Note: output screenshots is stored under *seleniumhq/screenshots/*
+
+2. Test a list of *Black Berry* user agents from one IP (about 117 user agents)
+
+- Command:
+
+    cd seleniumhq && python ./fake_user.py -f user_agents_blackberry.txt -t "http://www.youtube.com/...
+
+- Result: All of the sites Youtube returned for these user agents were pure HTML files with a link to RTSP stream protocol. Like:
+
+```html
+<a href="rtsp://r7---sn-p5qlsu7k.googlevideo.com/Ck0LENy73wIaRAkF34qwvQCiKhMYDSANFC1i_ThVMOCoAUIJbXYtZ29vZ2xlSARSBXdhdGNoYIyv6dejrL-cVYoBC2ZLd3JIS2w5eVNFDA==/53B19A07BDE07CC9F3AEC486033E40B194A30C94.06587048F019B0928C163CC66FEFBE55570E60B9/yt5/1/video.3gp" type="video/3gp" onclick="return ytm.sendPlaybackPing('KqIAvbCK3wU','13','');" alt="video">Watch Video</a>
+```
+
+- Note: output screenshots is stored under *seleniumhq/screenshots_blackberry/*
+
+## F. Future Work
+
+- Look into RTSP protocol.
 - Record traffic packets and see if they can be reproduced.
 
-## Code
+## G.  Code
 
 All the code mentioned in this document is on this [GitHub Repo](https://github.com/heronyang/click_fraud).
