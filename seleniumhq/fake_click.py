@@ -41,15 +41,15 @@ if filename != '':
         profile.set_preference("general.useragent.override", ua)
 
         driver = webdriver.Firefox(profile)
-        driver.set_window_size(1440, 900)
-        driver.maximize_window()
+        # driver.set_window_size(1440, 900)
+        # driver.maximize_window()
         driver.get(args['target'])
 
         # sleep
         time.sleep(20 + randint(0,10))
 
         # finish
-        save_to_name = 'screenshots_server/screenshot'+''.join(e for e in ua if e.isalnum())+'.png'
+        save_to_name = 'screenshots_blackberry/screenshot_'+''.join(e for e in ua if e.isalnum())+'.png'
         driver.get_screenshot_as_file(save_to_name)
         print 'save to name: ' + save_to_name
         driver.quit()
@@ -64,7 +64,7 @@ else:
     profile.set_preference("general.useragent.override", args['user_agent'])
 
     driver = webdriver.Firefox(profile)
-    driver.set_window_size(1440, 900)
+    # driver.set_window_size(1440, 900)
     driver.get(args['target'])
 
 # sleep
