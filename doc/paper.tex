@@ -66,7 +66,7 @@ The first service that we used was from http://buildmyviews.org. The IP address 
   \item Option 3: high retention view, the views will watch the whole video making the traffic more like a legitimate views from a real internet user.
 \end{itemize}
 
-Aside from the view counts, this service also offered to generate comments on YouTube video. This website claims to offer 24/7 customer support via emails and also chat services. The chat services didn't seems to work as no one replied when we started to use their chat service screen. Moreover, when we sent an email asking about their basic operation on March 2, 2015, we didn't receive any reply as of April 2$^{nd}$, 2015. However, when we purchase their service of 1000 views for 3 dollars, we did receive a confirmation email from socialwarehouseorg@gmail.com with the name ``Kevin M''.
+Aside from the view counts, this service also offered to generate comments on YouTube video. This website claims to offer 24/7 customer support via emails and also chat services. The chat services didn't seems to work as no one replied when we started to use their chat service screen. Moreover, when we sent an email asking about their basic operation on March 2, 2015, we didn't receive any reply as of April 4$^{th}$, 2015. However, when we purchase their service of 1000 views for 3 dollars, we did receive a confirmation email from socialwarehouseorg@gmail.com with the name ``Kevin M''.
 
 \begin{figure}
   \centering
@@ -99,7 +99,7 @@ The third service that we used was from http://socialwarrior.net. The IP address
 
 We used this service to generate 2000 views for 7.5 dollars on video hosted by YouTube as well as 500 views for 5 dollars on a video that is hosted by DailyMotion.com. And of course, we did received a confirmation order email with tracking number. The most surprising about this site is that they admit that they are generating fake clicks, views, and followers. This is depicted on their ``About'' page and the screen shot displayed in Figure 3 below.
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=3.0in]{fig3a}
   \caption{``About'' page of SocialWarrior.net}
@@ -352,7 +352,7 @@ Setup environment where this experiment was executed:
 
 Here we used multiple public IP addresses with our code to pass the 301 view threshold on video hosted by YouTube. Considering only IPv4, there are little less than 4 billion public IP addresses available in the world.
 
-Again, we are assuming YouTube view counting system checks source public IP address since this information could be used to detect bot traffic. A video with 1000 views should have multiple public source IP addresses since users are geographically separated and use different ISPs. Although many users share same publish IP address, it is highly unlikely that all 1000 real views came from one public IP address out of 4 billion. Therefore, we used Amazon’s instances to incorporate 5 different IP addresses when executing our artificial view count generating code.
+Again, we are assuming YouTube view counting system checks source public IP address since this information could be used to detect bot traffic. A video with 1000 views should have multiple source IP addresses since users are geographically separated and use different ISPs. Although many users share same publish IP address, it is highly unlikely that all 1000 real views came from one public IP address out of 4 billion. Therefore, we used Amazon’s instances to incorporate 5 different IP addresses when executing our artificial view count generating code.
 
 Setup environment where this experiment was executed:
 \begin{itemize}
@@ -427,10 +427,10 @@ system is also vulnerable to false negative view counts.
 
 \section{Related Works}
 
-Fake view on video advertisement is relatively new; thus, not many published research are available. However, there is a researched conducted by Cornell University, where they partnered with Tencent Video and were able to collect much data on real video advertisements~\cite{c5}. They came up with the idea to calculate entropy value base on captured traffic. It distinguishes real and bot traffic based on the entropy value where lower the number, it more likely a bot. The authors stated that
+Fake view on video advertisement is relatively new; thus, not many published research are available. However, there is a research conducted by Cornell University, where they partnered with Tencent Video and were able to collect much data on real video advertisements~\cite{c5}. They came up with the idea to calculate entropy value base on captured traffic. It distinguishes real and bot traffic based on the entropy value where lower the number, it more likely a bot. The authors stated that
 their entropy value system was 98\% accurate distinguishing real to fake views on video advertisements~\cite{c5}; thus, we assume YouTube is using a similar system. As mentioned before, YouTube stops the count at 301 views and analyzes the traffic before granting any more view counts. This closely fits into the Cornell’s entropy system, where captured traffic is carefully analyzed to distinguish between real and fake views on video advertisements.
 
-Similar research was done by UC San Diego, University of Texas, and Microsoft where they focused to catching spam clicks on online advertisements~\cite{c18}. This research used around 10 ethical publishers as a baseline to calculate the Return On Investment (ROI) value, then assume that spam clickers have higher ROI value~\cite{c18}. This research is interesting since it focuses the heart of the issue where money derived from artificial views create incentives for hackers.
+Similar research was done by UC San Diego, University of Texas, and Microsoft where they focused on catching spam clicks on online advertisements~\cite{c18}. This research used around 10 ethical publishers as a baseline to calculate the Return On Investment (ROI) value, then assume that spam clickers have higher ROI value~\cite{c18}. This research is interesting since it focuses the heart of the issue where money derived from artificial views create incentives for hackers.
 
 Lastly, another research was done to analyze the spam eco-system~\cite{c18}. In this research, the authors carefully analyzed how the spam services are provided and found a bottleneck (payment system) that can be used to stop the whole spam eco-system~\cite{c18}. Key information found in this research can be related to the 4 services that we used on section 2\&3. Thus, future research should be conducted if the services which provide artificial views on videos has the same bottleneck as the
 spam eco-system.
