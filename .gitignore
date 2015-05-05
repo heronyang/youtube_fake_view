@@ -2,3 +2,7 @@ tags
 *.log
 *.logs
 ghostdriver.log
+*.bbl
+*.log
+*.aux
+*.blg
